@@ -5,6 +5,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.proyect.rest.ConfigSecurity.JwtService;
 import com.proyect.rest.controller.models.AuthResponse;
 import com.proyect.rest.controller.models.AuthenticationRequest;
 import com.proyect.rest.controller.models.RegisterRequest;
@@ -12,7 +13,6 @@ import com.proyect.rest.entities.RoleEntity;
 import com.proyect.rest.entities.Usuario;
 import com.proyect.rest.repository.UsuarioRepository;
 
-import Config.JwtService;
 import lombok.RequiredArgsConstructor;
 
 @Service

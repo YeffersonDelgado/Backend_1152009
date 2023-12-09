@@ -1,4 +1,4 @@
-package Config;
+package com.proyect.rest.ConfigSecurity;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -40,7 +40,7 @@ public class AppConfig {
 	}
 
     @Bean
-	 private PasswordEncoder PasswordEncoder() {
+	 public PasswordEncoder PasswordEncoder() {
 		return new BCryptPasswordEncoder();
 	}
     

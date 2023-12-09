@@ -1,4 +1,4 @@
-package Config;
+package com.proyect.rest.ConfigSecurity;
 
 import java.io.IOException;
 
