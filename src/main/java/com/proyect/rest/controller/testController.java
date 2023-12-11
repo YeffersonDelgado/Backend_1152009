@@ -13,7 +13,7 @@ public class testController {
 
    @GetMapping("/helloPublic")
    public String holaPublic() {
-	   return "Hola Mundo Publico";
+	   return "REVIVIENDO A PEPE CARDENAS";
    }
    
    @GetMapping("/helloProtected")

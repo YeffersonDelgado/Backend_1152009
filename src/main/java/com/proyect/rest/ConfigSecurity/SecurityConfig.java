@@ -14,6 +14,7 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.security.web.util.matcher.OrRequestMatcher;
 import org.springframework.security.web.util.matcher.RequestMatcher;
 import org.springframework.util.AntPathMatcher;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 import lombok.RequiredArgsConstructor;
 
@@ -21,6 +22,7 @@ import lombok.RequiredArgsConstructor;
 @EnableWebSecurity
 @RequiredArgsConstructor
 @EnableMethodSecurity
+@CrossOrigin(origins="http://localhost:8080", allowCredentials="*")
 public class SecurityConfig {
 
 	private final JwtFilter jwtFilter;
@@ -44,7 +46,8 @@ public class SecurityConfig {
 		
 		return new OrRequestMatcher(
 				new AntPathRequestMatcher("/api/test/helloPublic"),
-				new AntPathRequestMatcher("/api/auth/**")
+				new AntPathRequestMatcher("/api/auth/**"),
+				new AntPathRequestMatcher("/api/producto/**")
 				);
 		
 	}

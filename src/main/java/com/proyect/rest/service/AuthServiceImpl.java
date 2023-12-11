@@ -2,6 +2,7 @@ package com.proyect.rest.service;
 
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -13,6 +14,7 @@ import com.proyect.rest.entities.RoleEntity;
 import com.proyect.rest.entities.Usuario;
 import com.proyect.rest.repository.UsuarioRepository;
 
+import ch.qos.logback.core.net.LoginAuthenticator;
 import lombok.RequiredArgsConstructor;
 
 @Service
@@ -50,5 +52,9 @@ public class AuthServiceImpl implements AuthService{
 
 		return AuthResponse.builder().token(jwtToken).build();
 	}
+
+	
+	
+	
 
 }
