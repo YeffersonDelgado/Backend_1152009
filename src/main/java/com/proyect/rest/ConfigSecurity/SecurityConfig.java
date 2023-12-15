@@ -22,16 +22,24 @@ import lombok.RequiredArgsConstructor;
 @EnableWebSecurity
 @RequiredArgsConstructor
 @EnableMethodSecurity
-@CrossOrigin(origins="http://localhost:8080", allowCredentials="*")
 public class SecurityConfig {
 
 	private final JwtFilter jwtFilter;
 	private final AuthenticationProvider authenticationProvider;
 	
+	private final String[] RUTAS = {
+		"/v3/api-docs/**",
+		"/swagger-ui/**",
+		"/v2/api-docs/**",
+		"/swagger-resources/**"	
+	};
+	
 	@Bean
 	public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
 		
-		httpSecurity.csrf(csrf -> csrf.disable()).authorizeHttpRequests(auth -> auth.requestMatchers(publicEndpoints()).permitAll()
+		httpSecurity.csrf(csrf -> csrf.disable()).authorizeHttpRequests(auth -> auth.requestMatchers(
+				publicEndpoints()).permitAll()
+				.requestMatchers(RUTAS).permitAll()
 				.anyRequest().authenticated())
 		.sessionManagement(sess -> sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
 		.authenticationProvider(authenticationProvider)
@@ -47,7 +55,8 @@ public class SecurityConfig {
 		return new OrRequestMatcher(
 				new AntPathRequestMatcher("/api/test/helloPublic"),
 				new AntPathRequestMatcher("/api/auth/**"),
-				new AntPathRequestMatcher("/api/producto/**")
+				new AntPathRequestMatcher("/api/producto/**"),
+				new AntPathRequestMatcher("/**")
 				);
 		
 	}

@@ -33,12 +33,13 @@ public class JwtFilter extends OncePerRequestFilter{
 	final String jwt;
 	final String usuarioEmail;
 	
-	if(authHeader == null || !authHeader.startsWith("bearer")) {
+	if(authHeader == null || !authHeader.startsWith("Bearer")) {
 		filterChain.doFilter(request, response);
 		return;
 	}
 	jwt = authHeader.substring(7);
 	usuarioEmail = jwtService.getUsuarioName(jwt);
+	
 		
 	if(usuarioEmail != null && SecurityContextHolder.getContext().getAuthentication() == null) {
 		UserDetails userDetails = this.userDetailsService.loadUserByUsername(usuarioEmail);
